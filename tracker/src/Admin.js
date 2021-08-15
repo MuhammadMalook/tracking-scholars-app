@@ -144,14 +144,21 @@ const Admin = () => {
   // create state variables for each input
   const [firstName, setFirstName] = useState('');
   const [address, setAddress] = useState('');
+  const [total_slp, setTotal_slp] = useState();
+  const [in_game_slp, setIn_game_slp] = useState();
+  const [MMR, setMMR] = useState();
   const handleAdd=()=>{
 
-    if(firstName && address){
+    if(firstName && address && total_slp && in_game_slp && MMR){
 
       Axios.post('http://localhost:5000/add',
       {
         Name:firstName, 
-        Ronin_Address:address
+        Ronin_Address:address,
+        total_slp:total_slp,
+        in_game_slp:in_game_slp,
+        mmr:MMR
+
       }).then(
       resp=>{
         toast.success("User Added Successfully");
@@ -187,6 +194,28 @@ const Admin = () => {
           value={address}
           onChange={e => setAddress(e.target.value)}
         />
+        <TextField
+          label="Total_slp"
+          variant="filled"
+          required
+          value={total_slp}
+          onChange={e => setTotal_slp(e.target.value)}
+        />
+        <TextField
+          label="in_game_slp"
+          variant="filled"
+          required
+          value={in_game_slp}
+          onChange={e => setIn_game_slp(e.target.value)}
+        />
+        <TextField
+          label="MMR"
+          variant="filled"
+          required
+          value={MMR}
+          onChange={e => setMMR(e.target.value)}
+        />
+        
         
         <div>
 

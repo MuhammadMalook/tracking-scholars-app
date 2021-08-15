@@ -7,12 +7,15 @@ route.post('/' , (req , res)=>{
 
     const fullName=req.body.Name
     const address=req.body.Ronin_Address
+    const totalSlp = req.body.total_slp
+    const ingameSlp = req.body.in_game_slp
+    const mmr = req.body.mmr
 
     con.getConnection(function(err){
         if(err){
             return console.error("ERROR " + err)
         }
-    con.query(`INSERT INTO users VALUES(?,?)`,[fullName, address],(error, row, column)=>{
+    con.query(`INSERT INTO total_slp VALUES(?,?,?,?,?)`,[fullName,address,totalSlp,ingameSlp,mmr,],(error, row, column)=>{
 
         if(error)
             return res.send("ERROR OCCURED")
