@@ -20,7 +20,7 @@ app.use('/search',searchRoute)
 app.use('/graph',getGraph)
 
 
-var task = cron.schedule('17 01 * * *', () => {
+var task = cron.schedule('00 08 * * *', () => {
 
  
     var con = mysql.createConnection({
@@ -30,13 +30,6 @@ var task = cron.schedule('17 01 * * *', () => {
         database:"scholars"
       });
       
-      // con.connect(function(err) {
-      //     if (err) throw err;
-      //     con.query("SELECT * FROM employees limit 2", function (err, result, fields) {
-      //       if (err) throw err;
-      //       console.log(result);
-      //     });
-      //   });
      
         con.connect(function(err) {
           if (err) throw err;
@@ -52,7 +45,7 @@ var task = cron.schedule('17 01 * * *', () => {
         });
 }, {
 	scheduled: false,
-    timezone:"Asia/Karachi"
+    timezone:"Asia/Singapore"
 });
 task.start();
 
